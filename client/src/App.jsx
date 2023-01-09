@@ -1,5 +1,11 @@
+import Dashboard from "./pages/Dashboard";
+
 const App = () => {
-  return <h1>Hello world!</h1>;
+  return (
+    <>
+      <Dashboard />
+    </>
+  );
 };
 
 export default App;
