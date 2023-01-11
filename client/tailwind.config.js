@@ -6,7 +6,11 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: "#5E7FA6",
+      }
+    },
   },
   plugins: [
     require('flowbite/plugin')
