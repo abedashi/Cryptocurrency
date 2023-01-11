@@ -3,7 +3,7 @@ const Sidebar = () => {
     <div className="flex flex-col justify-between max-xl:hidden xl:h-screen xl:border xl:overflow-y-auto xl:fixed xl:w-60 bg-gray-50 dark:bg-gray-800">
       <div>
         <h1 className="text-center my-10 text-3xl font-semibold whitespace-nowrap dark:text-white">
-          CRYPTO<span className="text-[#D0ED6C]">X</span>
+          CRYPTO<span className="text-primary">X</span>
         </h1>
         <div className="flex items-center justify-center flex-col gap-3">
           <img
@@ -14,7 +14,7 @@ const Sidebar = () => {
           <h1>Abed ashie</h1>
         </div>
         <ul className="p-7">
-          <li className="my-3 flex items-center gap-1 cursor-pointer bg-[#D0ED6C] p-2 rounded-lg hover:shadow-inner">
+          <li className="my-3 flex items-center gap-1 cursor-pointer hover:text-white hover:bg-primary duration-200 ease-in-out bg-primary text-white p-2 rounded-lg hover:shadow-inner">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -36,7 +36,7 @@ const Sidebar = () => {
             </svg>
             <span>Home</span>
           </li>
-          <li className="my-3 flex items-center gap-1 cursor-pointer bg-[#D0ED6C] p-2 rounded-lg hover:shadow-inner">
+          <li className="my-3 flex items-center gap-1 cursor-pointer hover:text-white hover:bg-primary duration-200 ease-in-out p-2 rounded-lg hover:shadow-inner">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -58,7 +58,7 @@ const Sidebar = () => {
             </svg>
             <span>News</span>
           </li>
-          <li className="my-3 flex items-center gap-1 cursor-pointer bg-[#D0ED6C] p-2 rounded-lg hover:shadow-inner">
+          <li className="my-3 flex items-center gap-1 cursor-pointer hover:text-white hover:bg-primary duration-200 ease-in-out p-2 rounded-lg hover:shadow-inner">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -80,7 +80,7 @@ const Sidebar = () => {
             </svg>
             <span>About</span>
           </li>
-          <li className="my-3 flex items-center gap-1 cursor-pointer bg-[#D0ED6C] p-2 rounded-lg hover:shadow-inner">
+          <li className="my-3 flex items-center gap-1 cursor-pointer p-2 rounded-lg hover:text-white hover:bg-primary duration-200 ease-in-out hover:shadow-inner">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -104,7 +104,7 @@ const Sidebar = () => {
           </li>
         </ul>
       </div>
-      <div className="flex items-center justify-center gap-1 cursor-pointer mb-4 hover:bg-[#D0ED6C] hover:shadow-inner mx-7 p-2 rounded-lg">
+      <div className="flex items-center justify-center gap-1 cursor-pointer mb-4 hover:bg-primary hover:shadow-inner duration-200 ease-in-out hover:text-white mx-7 p-2 rounded-lg">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
