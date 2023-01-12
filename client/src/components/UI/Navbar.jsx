@@ -52,7 +52,7 @@ const Navbar = () => {
                 </span>
               </li>
               <li>
-                <span className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                <span className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                   Sign out
                 </span>
               </li>

@@ -28,6 +28,7 @@ const DashboardMain = () => {
           </label>
         </div>
       </div>
+
       <div className="mt-8">
         <div className="flex gap-8 max-md:flex-wrap">
           <div className="rounded-lg h-64 max-md:w-full w-8/12">
