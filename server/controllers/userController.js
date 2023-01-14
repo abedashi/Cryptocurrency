@@ -7,9 +7,9 @@ const bcrypt = require("bcryptjs");
 // @route   POST /api/users/register
 // @acess   Public
 const register = asyncHandler(async (req, res) => {
-  const { firstName, lastName, email, password, term } = req.body;
+  const { firstName, lastName, email, password } = req.body;
 
-  if (!firstName || !lastName || !email || !password || !term) {
+  if (!firstName || !lastName || !email || !password) {
     res.status(400);
     throw new Error("Please add all fields");
   }
@@ -20,6 +20,11 @@ const register = asyncHandler(async (req, res) => {
   if (userExists) {
     res.status(400);
     throw new Error("This email is already connected to an account");
+  }
+
+  if (password.length < 6) {
+    res.status(400);
+    throw new Error("Password must be at least 6 characters");
   }
 
   // Hash password
@@ -37,7 +42,6 @@ const register = asyncHandler(async (req, res) => {
   if (user) {
     res.status(201).json({
       id: user._id,
-      fname: user.firstName,
       email: user.email,
       token: genrateToken({ id: user._id }),
     });
@@ -58,7 +62,6 @@ const login = asyncHandler(async (req, res) => {
   if (user && (await bcrypt.compare(password, user.password))) {
     res.status(200).json({
       id: user._id,
-      fname: user.firstName,
       email: user.email,
       token: genrateToken({ id: user._id }),
     });
