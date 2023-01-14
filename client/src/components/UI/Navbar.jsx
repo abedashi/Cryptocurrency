@@ -1,4 +1,16 @@
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { logout, reset } from "../../features/auth/authSlice";
+
 const Navbar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const onLogouHandler = () => {
+    dispatch(logout());
+    dispatch(reset());
+    navigate("/");
+  };
   return (
     <nav className="max-xl:block hidden bg-gray-50 border border-gray-200 px-2 sm:px-4 py-2.5 rounded-lg dark:bg-gray-900">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
@@ -37,21 +49,20 @@ const Navbar = () => {
             </div>
             <ul className="py-1" aria-labelledby="user-menu-button">
               <li>
-                <span className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                  Dashboard
-                </span>
+                <Link to="/home">
+                  <span className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                    Home
+                  </span>
+                </Link>
               </li>
               <li>
-                <span className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                  Settings
-                </span>
+                <Link to="/settings">
+                  <span className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                    Settings
+                  </span>
+                </Link>
               </li>
-              <li>
-                <span className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                  Earnings
-                </span>
-              </li>
-              <li>
+              <li onClick={onLogouHandler}>
                 <span className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
                   Sign out
                 </span>
