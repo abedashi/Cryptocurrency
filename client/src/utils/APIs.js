@@ -53,3 +53,17 @@ export const getCoin = async (id) => {
     return error;
   }
 }
+
+export const getCoinChart = async (id, days) => {
+  const { data } = await axios.get(BASE_URL + `/coins/${id}/market_chart?vs_currency=usd&days=${days}&interval=daily`);
+
+  try {
+    let loadedData = {
+      prices: data.prices
+    }
+    return loadedData;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
