@@ -42,6 +42,9 @@ const register = asyncHandler(async (req, res) => {
   if (user) {
     res.status(201).json({
       id: user._id,
+      fname: user.firstName,
+      lname: user.lastName,
+      balance: user.balance,
       email: user.email,
       token: genrateToken({ id: user._id }),
     });
@@ -62,6 +65,9 @@ const login = asyncHandler(async (req, res) => {
   if (user && (await bcrypt.compare(password, user.password))) {
     res.status(200).json({
       id: user._id,
+      fname: user.firstName,
+      lname: user.lastName,
+      balance: user.balance,
       email: user.email,
       token: genrateToken({ id: user._id }),
     });

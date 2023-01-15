@@ -29,24 +29,24 @@ const Trade = ({ coin }) => {
           Make a trade
         </div>
         <div>
-          <ul class="grid w-full gap-2 grid-cols-2 p-2">
+          <ul className="grid w-full gap-2 grid-cols-2 p-2">
             <li>
               <input
                 type="radio"
                 id="hosting-small"
                 name="hosting"
                 value="hosting-small"
-                class="hidden peer"
-                onClick={onBuyHandler}
-                checked={trade.buy ? true : false}
+                className="hidden peer"
+                onChange={onBuyHandler}
+                defaultChecked="true"
                 required
               />
               <label
-                for="hosting-small"
-                class="inline-flex items-center justify-between w-full p-3 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-primary peer-checked:text-primary hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                htmlFor="hosting-small"
+                className="inline-flex items-center justify-between w-full p-3 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-primary peer-checked:text-primary hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
               >
-                <div class="block">
-                  <div class="w-full text-lg font-semibold">Buy</div>
+                <div className="block">
+                  <div className="w-full text-lg font-semibold">Buy</div>
                 </div>
               </label>
             </li>
@@ -55,17 +55,16 @@ const Trade = ({ coin }) => {
                 type="radio"
                 id="hosting-big"
                 name="hosting"
-                value="hosting-big"
-                class="hidden peer"
-                checked={trade.sell ? true : false}
-                onClick={onSellHandler}
+                value={trade.sell}
+                className="hidden peer"
+                onChange={onSellHandler}
               />
               <label
-                for="hosting-big"
-                class="inline-flex items-center justify-between w-full p-3 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-primary peer-checked:text-primary hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                htmlFor="hosting-big"
+                className="inline-flex items-center justify-between w-full p-3 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-primary peer-checked:text-primary hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
               >
-                <div class="block">
-                  <div class="w-full text-lg font-semibold">Sell</div>
+                <div className="block">
+                  <div className="w-full text-lg font-semibold">Sell</div>
                 </div>
               </label>
             </li>
@@ -84,8 +83,7 @@ const Trade = ({ coin }) => {
             <div className="px-3 pb-3">
               <input
                 type="text"
-                id="first_name"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Amount"
                 autoComplete="off"
                 required
@@ -96,16 +94,16 @@ const Trade = ({ coin }) => {
         {trade.sell && (
           <div className="p-3">
             <label
-              for="countries"
-              class="block mb-2 w-max text-sm font-medium text-gray-900 dark:text-white"
+              htmlFor="countries"
+              className="block mb-2 w-max text-sm font-medium text-gray-900 dark:text-white"
             >
               Select an option
             </label>
             <select
               id="countries"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              <option selected>Choose a country</option>
+              <option value="default">Choose a country</option>
               <option value="US">United States</option>
               <option value="CA">Canada</option>
               <option value="FR">France</option>

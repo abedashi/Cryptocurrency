@@ -1,10 +1,46 @@
+import { useState, useEffect } from "react";
 import CoinsTable from "./CoinsTable";
+import { getCoins } from "../utils/APIs";
+import Pagination from "./UI/Pagination";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  const { user } = useSelector((state) => state.auth);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [coinsPerPage] = useState(10);
+
+  const [markets, setMarkets] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const indexOfLastCoin = currentPage * coinsPerPage;
+  const indexOfFirstPost = indexOfLastCoin - coinsPerPage;
+  const currentCoins = markets.slice(indexOfFirstPost, indexOfLastCoin);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  useEffect(() => {
+    const getCoinsData = async () => {
+      try {
+        const data = await getCoins();
+        setMarkets(data);
+      } catch (error) {
+        setError(error);
+      }
+      setIsLoading(false);
+    };
+    getCoinsData();
+  }, []);
+
+  const fLetter = user.fname.charAt(0).toUpperCase();
+  const fname = fLetter + user.fname.slice(1);
+  // console.log(fname);
+
   return (
     <>
       <div className="flex items-center justify-between flex-wrap max-xl:mt-2">
-        <div>Welcome Back, Abed!</div>
+        <div>Welcome Back, {user ? fname : ""}!</div>
         <div className="flex items-center justify-between max-sm:w-full gap-3 max-sm:mt-2">
           <div>
             <input
@@ -118,7 +154,7 @@ const Home = () => {
           <div className="flex max-md:flex-row flex-col max-md:h-40 h-64 gap-8 max-md:w-full w-4/12">
             <div className="flex items-center justify-between flex-wrap bg-primary text-white rounded-lg max-md:h-40 h-28 max-md:w-full shadow-md p-5">
               <h1 className="text-xl font-bold">Balance</h1>
-              <h1 className="text-2xl">$10000</h1>
+              <h1 className="text-2xl">${user ? user.balance : ""}</h1>
             </div>
             <div className="flex items-center justify-between flex-wrap bg-primary text-white rounded-lg max-md:h-40 h-28 max-md:w-full shadow-md p-5">
               <h1 className="text-xl font-bold">Balance</h1>
@@ -128,7 +164,12 @@ const Home = () => {
         </div>
       </div>
 
-      <CoinsTable />
+      <CoinsTable markets={currentCoins} isLoading={isLoading} error={error} />
+      <Pagination
+        coinsPerPage={coinsPerPage}
+        totalCoins={markets.length}
+        paginate={paginate}
+      />
     </>
   );
 };

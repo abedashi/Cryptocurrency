@@ -1,10 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout, reset } from "../../features/auth/authSlice";
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
 
   const onLogout = () => {
     dispatch(logout());
@@ -24,7 +25,9 @@ const Sidebar = () => {
             src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
             alt="profile"
           />
-          <h1>Abed ashie</h1>
+          <h1>
+            {user ? user.fname : ""} {user ? user.lname : ""}
+          </h1>
         </div>
         <ul className="p-7">
           <li>

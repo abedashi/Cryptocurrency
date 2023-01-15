@@ -67,3 +67,13 @@ export const getCoinChart = async (id, days) => {
     return error;
   }
 };
+
+// export const me = async (token) => {
+//   const { data } = await axios.get('/api/users/me', {
+//     headers: {
+//       Authorization: `Bearer ${token}`
+//     }
+//   });
+//   // console.log(data);
+//   return data;
+// }

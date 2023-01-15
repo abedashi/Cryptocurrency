@@ -1,8 +1,9 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout, reset } from "../../features/auth/authSlice";
 
 const Navbar = () => {
+  const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -28,7 +29,7 @@ const Navbar = () => {
             data-dropdown-toggle="user-dropdown"
             data-dropdown-placement="bottom"
           >
-            <span className="sr-only">Open user menu</span>
+            {/* <span className="sr-only">Open user menu</span> */}
             <img
               className="w-8 h-8 rounded-full"
               src="/docs/images/people/profile-picture-3.jpg"
@@ -41,10 +42,10 @@ const Navbar = () => {
           >
             <div className="px-4 py-3">
               <span className="block text-sm text-gray-900 dark:text-white">
-                Bonnie Green
+                {user ? `${user.fname} ${user.lname}` : ""}
               </span>
               <span className="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">
-                name@flowbite.com
+                {user ? user.email : ""}
               </span>
             </div>
             <ul className="py-1" aria-labelledby="user-menu-button">
