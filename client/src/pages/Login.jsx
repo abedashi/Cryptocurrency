@@ -44,6 +44,9 @@ const Login = () => {
     event.preventDefault();
 
     dispatch(login(loginData));
+    setLoginData((prevState) => {
+      return { ...prevState, email: "", password: "" };
+    });
   };
 
   if (isLoading) {
@@ -83,7 +86,7 @@ const Login = () => {
                   name="email"
                   value={email}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="john.doe@company.com"
+                  // placeholder="john.doe@company.com"
                   autoComplete="off"
                   onChange={onChangeHandler}
                   required
@@ -102,7 +105,7 @@ const Login = () => {
                   name="password"
                   value={password}
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="•••••••••"
+                  // placeholder="•••••••••"
                   onChange={onChangeHandler}
                   required
                 />

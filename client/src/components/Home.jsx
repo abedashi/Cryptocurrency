@@ -3,9 +3,17 @@ import CoinsTable from "./CoinsTable";
 import { getCoins } from "../utils/APIs";
 import Pagination from "./UI/Pagination";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [coinsPerPage] = useState(10);

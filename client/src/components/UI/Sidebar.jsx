@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout, reset } from "../../features/auth/authSlice";
@@ -6,6 +7,12 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
 
   const onLogout = () => {
     dispatch(logout());
@@ -26,7 +33,11 @@ const Sidebar = () => {
             alt="profile"
           />
           <h1>
-            {user ? user.fname : ""} {user ? user.lname : ""}
+            {user && (
+              <span>
+                {user.fname} {user.lname}
+              </span>
+            )}
           </h1>
         </div>
         <ul className="p-7">

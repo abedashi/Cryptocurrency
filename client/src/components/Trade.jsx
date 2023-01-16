@@ -1,11 +1,32 @@
+import { useEffect } from "react";
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { buyCoins, getBuys, reset } from "../features/trade/tradeSlice";
 
 const Trade = ({ coin }) => {
+  const dispatch = useDispatch();
+  const { buy, isLoading, isSuccess, isError, message } = useSelector(
+    (state) => state.trade
+  );
+
+  // useEffect(() => {
+  //   // if (isError) {
+  //   //   console.log(message);
+  //   // }
+
+  //   dispatch(getBuys());
+
+  //   return () => {
+  //     dispatch(reset());
+  //   };
+  // }, [message, dispatch]);
+
   const [trade, setTrade] = useState({
     buy: true,
     sell: false,
   });
-  const onBuyHandler = () => {
+
+  const onBuyBtnHandler = () => {
     setTrade((state) => {
       return {
         buy: true,
@@ -13,7 +34,7 @@ const Trade = ({ coin }) => {
       };
     });
   };
-  const onSellHandler = () => {
+  const onSellBtnHandler = () => {
     setTrade((state) => {
       return {
         buy: false,
@@ -22,8 +43,38 @@ const Trade = ({ coin }) => {
     });
   };
 
+  const [amount, setAmount] = useState({
+    buyAmount: "",
+    sellAmount: "",
+  });
+
+  const onChangeHandler = (event) => {
+    setAmount((preState) => ({
+      ...preState,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
+
+    if (trade.buy) {
+      console.log(amount.buyAmount);
+    }
+    if (trade.sell) {
+      console.log(amount.sellAmount);
+      // {
+      // id: coin.id;
+      // amount: 3;
+      // }
+    }
+  };
+
   return (
-    <div className="flex flex-col justify-between border shadow w-[30%] max-lg:w-full rounded-lg">
+    <form
+      onSubmit={onSubmitHandler}
+      className="flex flex-col justify-between border shadow w-[30%] max-lg:w-full rounded-lg"
+    >
       <div>
         <div className="font-bold text-xl border-b text-center p-2 pt-5">
           Make a trade
@@ -37,7 +88,7 @@ const Trade = ({ coin }) => {
                 name="hosting"
                 value="hosting-small"
                 className="hidden peer"
-                onChange={onBuyHandler}
+                onChange={onBuyBtnHandler}
                 defaultChecked="true"
                 required
               />
@@ -57,7 +108,7 @@ const Trade = ({ coin }) => {
                 name="hosting"
                 value={trade.sell}
                 className="hidden peer"
-                onChange={onSellHandler}
+                onChange={onSellBtnHandler}
               />
               <label
                 htmlFor="hosting-big"
@@ -70,45 +121,39 @@ const Trade = ({ coin }) => {
             </li>
           </ul>
         </div>
+
+        <div className="flex items-center justify-between p-3 text-sm font-medium text-gray-900 dark:text-white">
+          <span>Total Balance</span>
+          <span>$20000</span>
+        </div>
+        <div className="flex items-center justify-between px-3 pb-3 text-sm font-medium text-gray-900 dark:text-white">
+          <span>{coin.name} Owned</span>
+          <span>0</span>
+        </div>
         {trade.buy && (
-          <>
-            <div className="flex items-center justify-between p-3 text-sm font-medium text-gray-900 dark:text-white">
-              <span>Total Balance</span>
-              <span>$20000</span>
-            </div>
-            <div className="flex items-center justify-between px-3 pb-3 text-sm font-medium text-gray-900 dark:text-white">
-              <span>{coin.name} Owned</span>
-              <span>0</span>
-            </div>
-            <div className="px-3 pb-3">
-              <input
-                type="text"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Amount"
-                autoComplete="off"
-                required
-              />
-            </div>
-          </>
+          <div className="px-3 pb-3">
+            <input
+              type="text"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Amount to buy"
+              autoComplete="off"
+              name="buyAmount"
+              onChange={onChangeHandler}
+              required
+            />
+          </div>
         )}
         {trade.sell && (
-          <div className="p-3">
-            <label
-              htmlFor="countries"
-              className="block mb-2 w-max text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Select an option
-            </label>
-            <select
-              id="countries"
+          <div className="px-3 pb-3">
+            <input
+              type="text"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >
-              <option value="default">Choose a country</option>
-              <option value="US">United States</option>
-              <option value="CA">Canada</option>
-              <option value="FR">France</option>
-              <option value="DE">Germany</option>
-            </select>
+              placeholder="Amount to sell"
+              autoComplete="off"
+              name="sellAmount"
+              onChange={onChangeHandler}
+              required
+            />
           </div>
         )}
       </div>
@@ -120,7 +165,7 @@ const Trade = ({ coin }) => {
           {trade.buy ? "Buy" : "Sell"}
         </button>
       </div>
-    </div>
+    </form>
   );
 };
 
