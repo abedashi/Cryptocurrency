@@ -45,6 +45,19 @@ export const logout = createAsyncThunk("auth/logout", async () => {
   await authService.logout();
 });
 
+export const balanceUpdate = createAsyncThunk("auth/balance", async (_, thunkAPI) => {
+  try {
+    const token = thunkAPI.getState().auth.user.token;
+    return await authService.balanceUpdate(token);
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message)
+      || error.message
+      || error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+})
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -88,6 +101,20 @@ export const authSlice = createSlice({
       })
       .addCase(logout.fulfilled, (state) => {
         state.user = null;
+      })
+      .addCase(balanceUpdate.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(balanceUpdate.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user.balance = action.payload.balance;
+        localStorage.setItem('user', JSON.stringify(state.user))
+      })
+      .addCase(balanceUpdate.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
       });
   },
 });
