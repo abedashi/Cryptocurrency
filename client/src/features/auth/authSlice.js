@@ -109,7 +109,7 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.user.balance = action.payload.balance;
-        localStorage.setItem('user', JSON.stringify(state.user))
+        localStorage.setItem('user', JSON.stringify(state.user));
       })
       .addCase(balanceUpdate.rejected, (state, action) => {
         state.isLoading = false;

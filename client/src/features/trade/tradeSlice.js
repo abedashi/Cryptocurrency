@@ -9,9 +9,10 @@ const initialState = {
   message: "",
 };
 
-export const sellCoins = createAsyncThunk("trade/sellCoins", async (sellData, token, thunkAPI) => {
+export const sellCoins = createAsyncThunk("trade/sellCoins", async (sellData, thunkAPI) => {
   try {
-    return await tradeService.buyCoins(sellData, token);
+    const token = thunkAPI.getState().auth.user.token;
+    return await tradeService.sellCoins(sellData, token);
   } catch (error) {
     const message =
       (error.response &&
@@ -90,7 +91,6 @@ const tradeSlice = createSlice({
       .addCase(buyCoins.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.buys.push(action.payload);
       })
       .addCase(buyCoins.rejected, (state, action) => {
         state.isLoading = false;

@@ -1,6 +1,5 @@
 const asyncHandler = require("express-async-handler");
 const Trade = require('../models/Trade');
-const User = require('../models/User');
 
 // @desc    Sell Coins
 // @route   POST /api/trades/sell
@@ -8,7 +7,7 @@ const User = require('../models/User');
 const sellCoins = asyncHandler(async (req, res) => {
   const { coinId, amount, price } = req.body;
   const parsedAmount = parseInt(amount);
-  if (!coinId || !parsedAmount || !price || parsedAmount <= 0) {
+  if (!coinId || !parsedAmount || !price) {
     res.status(400);
     throw new Error('Invalid Request!');
   }
@@ -54,6 +53,9 @@ const buyCoins = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('No enough balance');
   }
+
+  // req.user.balance = parseFloat(req.user.balance) - totalPrice;
+  // req.user.save();
 
   const coinExists = await Trade.findOne({ userId: req.user.id, coinId });
   if (coinExists) {

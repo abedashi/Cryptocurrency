@@ -22,11 +22,11 @@ const Navbar = () => {
   return (
     <nav className="max-xl:block hidden bg-gray-50 border border-gray-200 px-2 sm:px-4 py-2.5 rounded-lg dark:bg-gray-900">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
-        <a href="https://flowbite.com/" className="flex items-center">
+        <Link to="/home" className="flex items-center">
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
             CRYPTO<span className="text-primary">X</span>
           </span>
-        </a>
+        </Link>
         <div className="flex items-center md:order-2">
           <button
             type="button"

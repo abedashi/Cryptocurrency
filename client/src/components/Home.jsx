@@ -162,7 +162,9 @@ const Home = () => {
           <div className="flex max-md:flex-row flex-col max-md:h-40 h-64 gap-8 max-md:w-full w-4/12">
             <div className="flex items-center justify-between flex-wrap bg-primary text-white rounded-lg max-md:h-40 h-28 max-md:w-full shadow-md p-5">
               <h1 className="text-xl font-bold">Balance</h1>
-              <h1 className="text-2xl">${user ? user.balance : ""}</h1>
+              <h1 className="text-2xl">
+                ${user ? parseFloat(user.balance).toFixed(2) : ""}
+              </h1>
             </div>
             <div className="flex items-center justify-between flex-wrap bg-primary text-white rounded-lg max-md:h-40 h-28 max-md:w-full shadow-md p-5">
               <h1 className="text-xl font-bold">Balance</h1>
