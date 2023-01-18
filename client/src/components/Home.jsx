@@ -2,18 +2,25 @@ import { useState, useEffect } from "react";
 import CoinsTable from "./CoinsTable";
 import { getCoins } from "../utils/APIs";
 import Pagination from "./UI/Pagination";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getBuys } from "../features/trade/tradeSlice";
+import MyCoinList from "../components/UI/MyCoinList";
 
 const Home = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const { buys, isLoading: tradeIsLoading } = useSelector(
+    (state) => state.trade
+  );
 
   useEffect(() => {
     if (!user) {
       navigate("/login");
     }
-  }, [user, navigate]);
+    dispatch(getBuys());
+  }, [user, navigate, dispatch]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [coinsPerPage] = useState(10);
@@ -43,7 +50,6 @@ const Home = () => {
 
   const fLetter = user.fname.charAt(0).toUpperCase();
   const fname = fLetter + user.fname.slice(1);
-  // console.log(fname);
 
   return (
     <>
@@ -72,93 +78,68 @@ const Home = () => {
 
       <div className="mt-8">
         <div className="flex gap-8 max-md:flex-wrap">
-          <div className="rounded-lg h-64 max-md:w-full w-8/12">
-            <div className="h-full overflow-y-scroll relative overflow-x-auto shadow-md rounded-lg">
-              <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
-                  <tr>
-                    <th scope="col" className="px-6 py-4">
-                      Product name
-                    </th>
-                    <th scope="col" className="px-6 py-4">
-                      Color
-                    </th>
-                    <th scope="col" className="px-6 py-4">
-                      Category
-                    </th>
-                    <th scope="col" className="px-6 py-4">
-                      Price
-                    </th>
-                    <th scope="col" className="px-6 py-4">
-                      Action
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      #1 Apple MacBook Pro 17"
-                    </th>
-                    <td className="px-6 py-4">Sliver</td>
-                    <td className="px-6 py-4">Laptop</td>
-                    <td className="px-6 py-4">$2999</td>
-                    <td className="px-6 py-4">edit</td>
-                  </tr>
-                  <tr className="border-b bg-white dark:bg-gray-800 dark:border-gray-700">
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      #2 Microsoft Surface Pro
-                    </th>
-                    <td className="px-6 py-4">White</td>
-                    <td className="px-6 py-4">Laptop PC</td>
-                    <td className="px-6 py-4">$1999</td>
-                    <td className="px-6 py-4">edit</td>
-                  </tr>
-                  <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      #3 Magic Mouse 2
-                    </th>
-                    <td className="px-6 py-4">Black</td>
-                    <td className="px-6 py-4">Accessories</td>
-                    <td className="px-6 py-4">$99</td>
-                    <td className="px-6 py-4">edit</td>
-                  </tr>
-                  <tr className="border-b bg-white dark:bg-gray-800 dark:border-gray-700">
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      #4 Microsoft Surface Pro
-                    </th>
-                    <td className="px-6 py-4">White</td>
-                    <td className="px-6 py-4">Laptop PC</td>
-                    <td className="px-6 py-4">$1999</td>
-                    <td className="px-6 py-4">edit</td>
-                  </tr>
-                  <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                    <th
-                      scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                    >
-                      #5 Magic Mouse 2
-                    </th>
-                    <td className="px-6 py-4">Black</td>
-                    <td className="px-6 py-4">Accessories</td>
-                    <td className="px-6 py-4">$99</td>
-                    <td className="px-6 py-4">edit</td>
-                  </tr>
-                </tbody>
-              </table>
+          {!tradeIsLoading && (
+            <div className="rounded-lg h-64 max-md:w-full w-8/12 bg-white">
+              <div className="h-full overflow-y-scroll relative overflow-x-auto shadow-md rounded-lg">
+                <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
+                    <tr>
+                      <th scope="col" className="px-6 py-4">
+                        MyCoin
+                      </th>
+                      <th scope="col" className="px-6 py-4">
+                        Price
+                      </th>
+                      <th scope="col" className="px-6 py-4">
+                        total price
+                      </th>
+                      <th scope="col" className="px-6 py-4">
+                        amount
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {buys.length === 0 && (
+                      <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
+                        <td className="pl-6 py-4">Not Coins Available</td>
+                      </tr>
+                    )}
+                    {buys.length > 0 &&
+                      buys.map((coin) => (
+                        <tr
+                          key={coin.coinId}
+                          className="bg-white border-b dark:bg-gray-900 dark:border-gray-700 cursor-pointer"
+                        >
+                          <td
+                            className="px-6 py-4 flex items-center gap-2"
+                            onClick={() => {
+                              navigate(`/${coin.coinId}`);
+                            }}
+                          >
+                            <img
+                              src={coin.image}
+                              alt={coin.name}
+                              width="40"
+                              height="40"
+                            />
+                            <div>
+                              <span className="text-black">{coin.name}</span>{" "}
+                              {coin.symbol}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4">
+                            ${coin.price / coin.amount}
+                          </td>
+                          <td className="px-6 py-4">${coin.price}</td>
+                          <td className="px-6 py-4">{coin.amount}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
+          )}
+          {tradeIsLoading && <MyCoinList />}
           <div className="flex max-md:flex-row flex-col max-md:h-40 h-64 gap-8 max-md:w-full w-4/12">
             <div className="flex items-center justify-between flex-wrap bg-primary text-white rounded-lg max-md:h-40 h-28 max-md:w-full shadow-md p-5">
               <h1 className="text-xl font-bold">Balance</h1>

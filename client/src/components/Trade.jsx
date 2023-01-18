@@ -18,10 +18,23 @@ const Trade = ({ coin }) => {
   const { buys, isLoading, isError, message } = useSelector(
     (state) => state.trade
   );
+  const [coinAmount, setCoinAmount] = useState();
+  useEffect(() => {
+    if (!isLoading && buys.length > 0) {
+      const shi = buys.find((item) => item.coinId === coin.id);
+      if (shi) {
+        setCoinAmount(shi.amount);
+      } else {
+        setCoinAmount(0);
+      }
+    } else if (!isLoading && buys.length === 0) {
+      setCoinAmount(0);
+    }
+  }, [buys, isLoading, coin.id]);
 
   useEffect(() => {
     if (isError) {
-      console.log(message, "ss");
+      console.log(message);
     }
     if (!user) {
       navigate("/login");
@@ -173,18 +186,19 @@ const Trade = ({ coin }) => {
         </div>
         <div className="flex items-center justify-between px-3 pb-3 text-sm font-medium text-gray-900 dark:text-white">
           <span>{coin.name} Owned</span>
-          <span>{}</span>
+          <span>{coinAmount}</span>
         </div>
         {trade.buy && (
           <div className="px-3 pb-3">
             <input
-              type="text"
+              type="number"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Amount to buy"
               autoComplete="off"
               name="buyAmount"
               value={amount.buyAmount}
               onChange={onChangeBuyHandler}
+              min="1"
               required
             />
           </div>
@@ -192,13 +206,15 @@ const Trade = ({ coin }) => {
         {trade.sell && (
           <div className="px-3 pb-3">
             <input
-              type="text"
+              type="number"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Amount to sell"
               autoComplete="off"
               name="sellAmount"
               value={amount.sellAmount}
               onChange={onChangeSellHandler}
+              min="1"
+              max={coinAmount}
               required
             />
           </div>

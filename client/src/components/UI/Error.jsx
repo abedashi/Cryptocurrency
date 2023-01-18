@@ -1,7 +1,7 @@
 const Error = () => {
   return (
     <div
-      className="flex p-4 max-xl:mt-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-gray-800 dark:text-red-400"
+      className="flex mt-8 p-4 max-xl:mt-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-gray-800 dark:text-red-400"
       role="alert"
     >
       <svg

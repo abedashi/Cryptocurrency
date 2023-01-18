@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { getCoin } from "../../utils/APIs";
 import tradeService from "./tradeService";
 
 const initialState = {
@@ -44,7 +45,19 @@ export const buyCoins = createAsyncThunk("trade/buyCoins", async (buyData, thunk
 export const getBuys = createAsyncThunk("trade/getBuys", async (_, thunkAPI) => {
   try {
     const token = thunkAPI.getState().auth.user.token;
-    return await tradeService.getBuys(token);
+    const data = await tradeService.getBuys(token);
+    const childrenResponses = await Promise.all(
+      data.map(async (item) => {
+        const coinData = await getCoin(item.coinId);
+        return {
+          ...item,
+          name: coinData.name,
+          image: coinData.image,
+          symbol: coinData.symbol,
+        };
+      })
+    );
+    return childrenResponses;
   } catch (error) {
     const message =
       (error.response &&
