@@ -20,7 +20,7 @@ const Navbar = () => {
     navigate("/");
   };
   return (
-    <nav className="max-xl:block hidden bg-gray-50 border border-gray-200 px-2 sm:px-4 py-2.5 rounded-lg dark:bg-gray-900">
+    <nav className="max-xl:block hidden bg-gray-50 border border-gray-200 px-2 sm:px-4 py-2.5 rounded-lg dark:bg-gray-900 dark:border-gray-900">
       <div className="container flex flex-wrap items-center justify-between mx-auto">
         <Link to="/home" className="flex items-center">
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
@@ -36,10 +36,9 @@ const Navbar = () => {
             data-dropdown-toggle="user-dropdown"
             data-dropdown-placement="bottom"
           >
-            {/* <span className="sr-only">Open user menu</span> */}
             <img
               className="w-8 h-8 rounded-full"
-              src="/docs/images/people/profile-picture-3.jpg"
+              src={user ? user.image : ""}
               alt="user"
             />
           </button>

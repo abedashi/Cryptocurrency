@@ -132,10 +132,10 @@ const Trade = ({ coin }) => {
   return (
     <form
       onSubmit={onSubmitHandler}
-      className="flex flex-col justify-between border shadow w-[30%] max-lg:w-full rounded-lg"
+      className="flex flex-col justify-between border shadow w-[30%] max-lg:w-full rounded-lg dark:bg-gray-900 dark:border-gray-900"
     >
       <div>
-        <div className="font-bold text-xl border-b text-center p-2 pt-5">
+        <div className="font-bold text-xl border-b dark:border-gray-700 text-center p-2 pt-5">
           Make a trade
         </div>
         <div>
@@ -152,7 +152,7 @@ const Trade = ({ coin }) => {
               />
               <label
                 htmlFor="hosting-small"
-                className="inline-flex items-center justify-between w-full p-3 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-primary peer-checked:text-primary hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                className="inline-flex items-center justify-between w-full p-3 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-primary peer-checked:border-primary peer-checked:text-primary hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
               >
                 <div className="block">
                   <div className="w-full text-lg font-semibold">Buy</div>
@@ -170,7 +170,7 @@ const Trade = ({ coin }) => {
               />
               <label
                 htmlFor="hosting-big"
-                className="inline-flex items-center justify-between w-full p-3 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-primary peer-checked:text-primary hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                className="inline-flex items-center justify-between w-full p-3 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-primary peer-checked:border-primary peer-checked:text-primary hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
               >
                 <div className="block">
                   <div className="w-full text-lg font-semibold">Sell</div>
@@ -192,7 +192,7 @@ const Trade = ({ coin }) => {
           <div className="px-3 pb-3">
             <input
               type="number"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
               placeholder="Amount to buy"
               autoComplete="off"
               name="buyAmount"
@@ -207,7 +207,7 @@ const Trade = ({ coin }) => {
           <div className="px-3 pb-3">
             <input
               type="number"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
               placeholder="Amount to sell"
               autoComplete="off"
               name="sellAmount"
@@ -224,7 +224,7 @@ const Trade = ({ coin }) => {
         {!isLoading ? (
           <button
             type="submit"
-            className="text-white w-full bg-primary hover:shadow-inner focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            className="text-white w-full bg-primary hover:shadow-inner focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-primary  focus:outline-none dark:focus:ring-primary"
           >
             {trade.buy ? "Buy" : "Sell"}
           </button>
@@ -232,7 +232,7 @@ const Trade = ({ coin }) => {
           <button
             disabled
             type="button"
-            className="text-white w-full bg-primary hover:shadow-inner focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            className="text-white w-full bg-primary hover:shadow-inner focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-primary focus:outline-none dark:focus:ring-primary"
           >
             <svg
               aria-hidden="true"

@@ -51,7 +51,10 @@ const CoinsTable = ({ markets, isLoading, error }) => {
               <td className="px-6 py-4 flex items-center gap-2">
                 <img src={coin.image} alt={coin.name} width="40" height="40" />
                 <div>
-                  <span className="text-black">{coin.name}</span> {coin.symbol}
+                  <span className="text-black dark:text-gray-200">
+                    {coin.name}
+                  </span>{" "}
+                  {coin.symbol}
                 </div>
               </td>
               <td className="px-6 py-4">${coin.price}</td>

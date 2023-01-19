@@ -52,7 +52,7 @@ const Register = () => {
   }
 
   return (
-    <div className="flex justify-center h-screen">
+    <div className="flex justify-center h-screen dark:bg-gray-800">
       <div className="h-max max-sm:w-full w-[550px] mt-12 p-10">
         <div className="flex flex-col gap-10">
           <div className="text-center">
@@ -70,7 +70,7 @@ const Register = () => {
             </span>
           </div>
           <form onSubmit={onSubmitHandler}>
-            <div className="bg-white rounded-lg p-5 shadow">
+            <div className="bg-white rounded-lg p-5 shadow dark:bg-gray-900">
               <div className="flex items-center justify-between">
                 <div className="mb-6 w-[45%]">
                   <label
@@ -84,7 +84,7 @@ const Register = () => {
                     id="fname"
                     name="firstName"
                     value={firstName}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
                     placeholder="John"
                     autoComplete="off"
                     onChange={onChangeHandler}
@@ -103,7 +103,7 @@ const Register = () => {
                     id="lname"
                     name="lastName"
                     value={lastName}
-                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
                     placeholder="Doe"
                     autoComplete="off"
                     onChange={onChangeHandler}
@@ -123,7 +123,7 @@ const Register = () => {
                   id="email"
                   name="email"
                   value={email}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
                   placeholder="john.doe@company.com"
                   autoComplete="off"
                   onChange={onChangeHandler}
@@ -142,7 +142,7 @@ const Register = () => {
                   id="password"
                   name="password"
                   value={password}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary dark:focus:border-primary"
                   placeholder="•••••••••"
                   onChange={onChangeHandler}
                   required
@@ -151,7 +151,7 @@ const Register = () => {
               <div>
                 <button
                   type="submit"
-                  className="text-white w-full bg-primary hover:shadow-inner focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                  className="text-white w-full bg-primary hover:shadow-inner focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-primary focus:outline-none"
                 >
                   Sign up
                 </button>

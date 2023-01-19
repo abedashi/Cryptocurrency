@@ -56,7 +56,7 @@ export const balanceUpdate = createAsyncThunk("auth/balance", async (_, thunkAPI
       || error.toString();
     return thunkAPI.rejectWithValue(message);
   }
-})
+});
 
 export const authSlice = createSlice({
   name: "auth",
@@ -115,7 +115,7 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-      });
+      })
   },
 });
 

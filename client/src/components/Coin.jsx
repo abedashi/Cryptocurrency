@@ -37,7 +37,7 @@ const Coin = () => {
   }
 
   return (
-    <div className="max-xl:mt-4 rounded-lg shadow bg-white">
+    <div className="max-xl:mt-4 rounded-lg shadow bg-white dark:bg-gray-700 dark:text-gray-400">
       <div className="flex gap-2 max-lg:flex-wrap p-6 px-4">
         <div className="flex flex-col w-[70%] rounded-lg max-lg:w-full">
           <div className="flex items-center justify-between">
@@ -58,7 +58,7 @@ const Coin = () => {
               <ul className="flex items-center gap-3 font-semibold">
                 <li
                   className={`cursor-pointer ${
-                    days === 1 ? "text-[#A6EC9A]" : "text-black"
+                    days === 1 ? "text-[#A6EC9A]" : ""
                   }`}
                   onClick={() => setDays(1)}
                 >
@@ -66,7 +66,7 @@ const Coin = () => {
                 </li>
                 <li
                   className={`cursor-pointer ${
-                    days === 7 ? "text-[#A6EC9A]" : "text-black"
+                    days === 7 ? "text-[#A6EC9A]" : ""
                   }`}
                   onClick={() => setDays(7)}
                 >
@@ -74,7 +74,7 @@ const Coin = () => {
                 </li>
                 <li
                   className={`cursor-pointer ${
-                    days === 14 ? "text-[#A6EC9A]" : "text-black"
+                    days === 14 ? "text-[#A6EC9A]" : ""
                   }`}
                   onClick={() => setDays(14)}
                 >
@@ -82,7 +82,7 @@ const Coin = () => {
                 </li>
                 <li
                   className={`cursor-pointer ${
-                    days === 21 ? "text-[#A6EC9A]" : "text-black"
+                    days === 21 ? "text-[#A6EC9A]" : ""
                   }`}
                   onClick={() => setDays(21)}
                 >
@@ -90,7 +90,7 @@ const Coin = () => {
                 </li>
                 <li
                   className={`cursor-pointer ${
-                    days === 30 ? "text-[#A6EC9A]" : "text-black"
+                    days === 30 ? "text-[#A6EC9A]" : ""
                   }`}
                   onClick={() => setDays(30)}
                 >

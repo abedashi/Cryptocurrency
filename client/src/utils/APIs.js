@@ -60,10 +60,21 @@ export const getCoinChart = async (id, days) => {
   try {
     let loadedData = {
       prices: data.prices
-    }
+    };
     return loadedData;
   } catch (error) {
     console.log(error);
     return error;
   }
 };
+
+
+export const searchCoin = async (search) => {
+  const { data } = await axios.get(BASE_URL + `/search?query=${search}`)
+
+  try {
+    return data.coins;
+  } catch (error) {
+
+  }
+}

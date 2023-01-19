@@ -16,7 +16,7 @@ import Home from "./components/Home";
 
 const App = () => {
   return (
-    <>
+    <div className="bg-[#EDF0F4] dark:bg-gray-800">
       <Router>
         <Routes>
           <Route path="/" element={<Dashboard />}>
@@ -30,7 +30,7 @@ const App = () => {
         </Routes>
       </Router>
       <ToastContainer />
-    </>
+    </div>
   );
 };
 

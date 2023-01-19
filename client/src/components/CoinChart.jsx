@@ -49,7 +49,7 @@ const CoinChart = ({ id, days }) => {
           {
             label: `Prices`,
             data: data.prices.map((price) => price),
-            borderColor: "rgb(144, 238, 144)",
+            borderColor: `rgb(144, 238, 144)`,
             backgroundColor: "#5E7FA6",
           },
         ],

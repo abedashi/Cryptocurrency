@@ -54,9 +54,6 @@ const buyCoins = asyncHandler(async (req, res) => {
     throw new Error('No enough balance');
   }
 
-  // req.user.balance = parseFloat(req.user.balance) - totalPrice;
-  // req.user.save();
-
   const coinExists = await Trade.findOne({ userId: req.user.id, coinId });
   if (coinExists) {
     coinExists.amount = coinExists.amount + parsedAmount;
