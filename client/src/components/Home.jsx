@@ -8,7 +8,7 @@ import { getBuys } from "../features/trade/tradeSlice";
 import MyCoinList from "../components/UI/MyCoinList";
 import Search from "./Search";
 
-const Home = () => {
+const Home = ({ theme, toggle }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
@@ -39,7 +39,6 @@ const Home = () => {
       setCoinsAmount(0);
     }
   }, [buys, tradeIsLoading]);
-  console.log(coinsAmount);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [coinsPerPage] = useState(10);
@@ -92,27 +91,6 @@ const Home = () => {
     searchCoinData();
   }, [searchInput]);
 
-  const [theme, setTheme] = useState(localStorage.getItem("theme"));
-  const onToggleHandler = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
-  useEffect(() => {
-    switch (theme) {
-      case "dark":
-        document.documentElement.classList.add("dark");
-        localStorage.setItem("theme", "dark");
-        break;
-      case "light":
-        document.documentElement.classList.remove("dark");
-        localStorage.setItem("theme", "light");
-        break;
-
-      default:
-        localStorage.removeItem("theme");
-        break;
-    }
-  }, [theme]);
-
   return (
     <>
       <div className="flex items-center justify-between flex-wrap max-xl:mt-2">
@@ -134,13 +112,13 @@ const Home = () => {
           <label className="relative inline-flex items-center cursor-pointer">
             <input
               type="checkbox"
-              checked={theme === "dark" ? true : false}
-              onClick={onToggleHandler}
+              checked={theme === "Dark" ? true : false}
+              onClick={toggle}
               className="sr-only peer"
             />
             <div className="w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary dark:peer-focus:ring-primary rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-primary peer-checked:bg-primary"></div>
             <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-              Mode
+              {theme} Mode
             </span>
           </label>
         </div>
