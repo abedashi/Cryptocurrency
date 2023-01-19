@@ -86,7 +86,7 @@ const me = asyncHandler(async (req, res) => {
 
 const genrateToken = (payload) => {
   return jwt.sign(payload, process.env.JWT_SECRET, {
-    expiresIn: "1d",
+    expiresIn: "30d",
   });
 };
 
