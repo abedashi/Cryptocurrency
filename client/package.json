@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "proxy": "http://localhost:3001",
+  "proxy": "https://cryptox-server.onrender.com",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
