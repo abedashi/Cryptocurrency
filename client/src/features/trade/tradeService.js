@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "/api/trades/";
+const API_URL = "https://cryptox-server.onrender.com/api/trades/";
 
 const sellCoins = async (sellData, token) => {
   const { data } = await axios.post(API_URL + "sell", sellData, {
